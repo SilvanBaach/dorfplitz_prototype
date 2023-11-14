@@ -36,17 +36,22 @@ class FCM : FirebaseMessagingService() {
 
     private fun showNotification(remoteMessage: RemoteMessage) {
         val intent = Intent(this, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
 
-        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+        val notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_background) // replace with your own notification icon
             .setContentTitle(remoteMessage.notification?.title ?: "New message")
             .setContentText(remoteMessage.notification?.body ?: "You have received a new message.")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
+
+        // Set the style to BigTextStyle to show a larger notification
+        val bigTextStyle = NotificationCompat.BigTextStyle()
+            .bigText(remoteMessage.notification?.body ?: "You have received a new message.")
+        notificationBuilder.setStyle(bigTextStyle)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
@@ -61,7 +66,7 @@ class FCM : FirebaseMessagingService() {
             }
         }
         with(NotificationManagerCompat.from(this)) {
-            notify(notificationId, builder.build())
+            notify(notificationId, notificationBuilder.build())
         }
     }
 
