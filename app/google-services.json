@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "501875418302",
+    "project_id": "dorfblitzprototype",
+    "storage_bucket": "dorfblitzprototype.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501875418302:android:5b3c86cab2a3a59cc02aef",
+        "android_client_info": {
+          "package_name": "com.example.dorfblitz_prototype"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaGbwEOBh4qoDug2VKn1j9rBczrl-D_4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

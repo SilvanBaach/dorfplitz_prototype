@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">dorfblitz_prototype</string>
+    <string name="channel_id">57</string>
+    <string name="channel_description">Hallo</string>
+</resources>
